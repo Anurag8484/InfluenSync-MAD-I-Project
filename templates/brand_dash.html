@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dashboard - Brand</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="dash-body">
+    
+<div class="sidebar">
+    <div class="dash-logo"></div>
+        <ul class="menu">
+            <li class="active">
+                <a href="#" >
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                    </a>
+            </li>
+            <li>
+                <a href="/brand_profile/{{ sponsor_id }}">
+                    <i class="fas fa-user"></i>
+                    <span>Proifle</span>
+                    </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Statistics</span>
+                    </a>
+            </li>
+            <li>
+                <a href="/new_camp">
+                    <i class="fa-solid fa-snowflake"></i>
+                    <span>Campaign</span>
+                    </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                    </a>
+            </li>
+            <li class="logout">
+                <a href="/brand_login">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Log Out</span>
+                    </a>
+            </li>
+           
+        </ul>
+   
+</div>
+
+<div class="main--content">
+    <div class="header--wrapper">
+        <div class="header--title">
+            <span>Welcome {{sname}}</span>
+
+             <br>
+            <span style="font-weight: bold; color:red " >  {{ msg}}</span>
+            <h2>Dashboard</h2>
+            <!-- <h3>Ratings</h3> -->
+        </div>
+        <div class="user--info">
+            <div class="search--box">
+
+                <i class="fa-solid fa-search">
+    
+                </i>
+                <input type="text" class="sin" name="" id="" placeholder="Search">
+            </div>
+            <!-- <img src="/static/3.jpg" alt=""> -->
+            
+        </div>
+        
+    </div>
+
+    <div class="card--container">
+        <h3 class="main--title">
+            Summary
+        </h3>
+        <div class="card--wrapper">
+            <div class="payment--card light-red">
+                <div class="card--header">
+                    <div class="amount">
+                        <span class="title">
+                             Active  Campaigns
+                        </span>
+                        <br>
+                        <span class="amount--value">
+                            {{alength}}
+                        </span>
+
+                    </div>
+                    <i class="fas fa-dollar-sign dash-icon"></i>
+                </div>
+                
+            </div>
+     
+            <div class="payment--card light-blue">
+                <div class="card--header">
+                    <div class="amount">
+                        <span class="title">
+                             Spending 
+                        </span>
+                        <br>
+                        <span class="amount--value">
+                            
+                            ${{Rtotal}}
+                        </span>
+
+                    </div>
+                    <i class="fas fa-users  sign dash-icon dark-green"></i>
+                </div>
+                
+            </div>
+
+
+
+            <div class="payment--card light-purple">
+                <div class="card--header">
+                    <div class="amount">
+                        <span class="title">
+                             Completed Campaigns
+                        </span>
+                        <br>
+                        <span class="amount--value">
+                            {{ clength }}
+                        </span>
+
+                    </div>
+                    <i class="fas fa-list dash-icon dark-purple"></i>
+                </div>
+                
+            </div>
+
+
+
+
+            <div class="payment--card light-green">
+                <div class="card--header">
+                    <div class="amount">
+                        <span class="title">
+                            New Request
+                        </span>
+                        <br>
+                        <span class="amount--value">
+                            {{plength}}
+                        </span>
+
+                    </div>
+                    <i class="fas fa-check dash-icon dark-blue"></i>
+                </div>
+                
+            </div>
+
+            </div>
+        </div>
+        <div class="tabular--wrapper">
+            <h3 class="main--title"> Active Campaigns</h3>
+            {% if a_ads %}
+            
+            <div class="table--container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Campaign -- AD Name</th>
+                            <th>Influencer Name</th>
+                            <th>Reach</th>
+                            <th>Category</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i,j,k  in a_ads %}
+                        
+                        <tr>
+                            <td>{{ k.name }}--{{i.name}}</td>
+                            <td>{{ j.username }}</td>
+                            <td> {{ i.payment }}  </td>
+                            <td> {{ j.category }}</td>
+                            
+                            
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    
+                </table>
+            </div>
+        </div>
+        {% else %}
+        <p style="text-align:center">--->No active campaigns</p>
+        {% endif %}
+        <div class="tabular--wrapper">
+            <h3 class="main--title">New Requests</h3>
+            {% if r_ads %}
+                
+            <div class="table--container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Campaign -- AD Name</th>
+                            <th>Influencer Name</th>
+                            <th>Reach</th>
+                            <th>Category</th>
+                            <th>Action</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i,j,k  in r_ads %}
+                        
+                        <tr>
+                            <td>{{ k.name }}--{{i.name}}</td>
+                            <td>{{ j.username }}</td>
+                            <td> {{ i.payment }}  </td>
+                            <td> {{ j.category }}</td>
+                            <form action="/baccept_ad/{{ i.ad_id }}" method="post">
+                                <td><button class="green-btn">Accept</button></td>
+                            </form>
+                            <form action="/breject_ad/{{ i.ad_id }}" method="post">
+                                
+                                <td><button class="red-btn">Reject</button></td>
+                            </form>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    
+                </table>
+            </div>
+        </div>
+        {% else %}
+            <p style="text-align:center">--->No new requests</p>
+        {% endif %}
+        <br>
+        <div class="tabular--wrapper">
+            <h3 class="main--title"> Completed Campaigns</h3>
+            {% if c_ads %}
+                
+            <div class="table--container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Campaign--Ad </th>
+                            <th>Influencer Name</th>
+                            <th>Total Payment</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i,j,k in c_ads  %}
+                        <tr>
+                            
+                            <td>{{ k.name }}--{{i.name}}</td>
+                            <td>{{j.username}}</td>
+                            <td> {{i.payment}}</td>
+                            <td><button class="green-btn">Completed</button></td>
+                            
+                            
+                            
+                            
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    
+                </table>
+            </div>
+            {% else %}
+                <p style="text-align:center">No completed campaigns</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>

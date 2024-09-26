@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="dash-body">
+    
+<div class="sidebar">
+    <div class="dash-logo"></div>
+        <ul class="menu">
+            <li class="active">
+                <a href="/brand_home" >
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                    </a>
+            </li>
+            <li>
+                <a href="/brand_profile/{{ campaign_id }}">
+                    <i class="fas fa-user"></i>
+                    <span>Proifle</span>
+                    </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Statistics</span>
+                    </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-question-circle"></i>
+                    <span>Support</span>
+                    </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                    </a>
+            </li>
+            <li class="logout">
+                <a href="/brand_login">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Log Out</span>
+                    </a>
+            </li>
+           
+        </ul>
+   
+        
+        
+      </div>
+<div class="main--content">
+    <div class="header--wrapper">
+        <div class="header--title">
+            <span>InfluenSync  </span> <span style="font-weight: bold; text-decoration:underline" ></span>
+            <h2>Profile</h2>
+            <!-- <h3>Ratings</h3> -->
+        </div>
+        <div class="user--info">
+            <!-- <div class="search--box"> -->
+
+                <!-- <i class="fa-solid fa-search"> -->
+    
+                <!-- </i> -->
+                <!-- <input type="text" class="sin" name="" id="" placeholder="Search"> -->
+            <!-- </div> -->
+            <!-- <img src="/static/2.jpg" alt=""> -->
+            
+        </div>
+        
+    </div>
+
+    <div class="card--container">
+       <div class="rwrapper" id="adcont" style="margin-top: 10px; margin-left:150px">
+        
+  <form action="/camp_profile/{{ camp.campaign_id }}" method="POST">
+    <h1>Edit Campaign</h1>
+
+    <div class="rinput-box">
+      <div class="rinput-field">
+        <input type="text" placeholder="Campaign Name" name="cname" disabled value="{{camp.name}}">
+        <i><ion-icon name="person"></ion-icon></i>
+      </div>
+      <div class="rinput-field">
+        <input type="text" placeholder="Description" name="desc"  value="{{camp.description}}">
+        <i><ion-icon name="logo-web-component"></ion-icon></i>
+      </div>
+    </div>
+
+
+    <div class="rinput-box">
+      <div class="rinput-field">
+        <input type="text" placeholder="Goals" name="goal"  value="{{camp.goals}}">
+        <i><ion-icon name="albums"></ion-icon></i>
+      </div>
+      <div class="rinput-field">
+        <input type="text" placeholder="Budget" name="budget" value="{{camp.budget}}">
+        <i><ion-icon name="phone-portrait-outline"></ion-icon></i>
+      </div>
+    </div>
+
+    <div class="rinput-box">
+      <div class="rinput-field">
+        <input type="text" placeholder="Visibility" name="visibility" value="{{camp.visibility}}">
+        <i><ion-icon name="globe-outline"></ion-icon></i>
+      </div>
+
+    </div>
+    
+
+  
+
+      <button type="submit" class="rbtn" style="width: 100px;">Change</button>
+      <div class="login-register">
+                {{msg}}
+                
+            </div>
+            
+          </form>
+        </div>   
+  </div>
+  
+
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script></html>
+</body>
+</html>

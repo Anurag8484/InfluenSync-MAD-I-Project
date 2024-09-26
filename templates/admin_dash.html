@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dashboard - Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="dash-body">
+    
+<div class="sidebar">
+    <div class="dash-logo"></div>
+        <ul class="menu">
+            <li class="active">
+                <a href="/admin_dash" >
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                    </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-user"></i>
+                    <span>Proifle</span>
+                    </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Statistics</span>
+                    </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-question-circle"></i>
+                    <span>Support</span>
+                    </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                    </a>
+            </li>
+            <li class="logout">
+                <a href="/">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Log Out</span>
+                    </a>
+            </li>
+           
+        </ul>
+   
+</div>
+
+<div class="main--content">
+    <div class="header--wrapper">
+        <div class="header--title">
+            <span>Welcome {{uname}}</span>
+            <h2>Dashboard</h2>
+            <!-- <h3>Ratings</h3> -->
+        </div>
+        <div class="user--info">
+            <div class="search--box">
+
+                <i class="fa-solid fa-search">
+    
+                </i>
+                <input type="text" class="sin" name="" id="" placeholder="Search">
+            </div>
+            <!-- <img src="/static/landing-user.png" alt=""> -->
+            
+        </div>
+        
+    </div>
+
+    <div class="card--container">
+        <h3 class="main--title">
+            Today's data
+        </h3>
+        <div class="card--wrapper">
+            
+     
+            <img src="/static/bar.png" alt="No Bhagoo">
+            
+                {% if total_aads > 0 or total_rads > 0 %}
+                    <img src="/static/pie.png" alt="No Bhaago">
+                {% else %}
+                    There are not Valid Number Ads to Display
+                {% endif %}
+
+
+          
+                
+
+
+            </div>
+        </div>
+        <div class="tabular--wrapper">
+            <h3 class="main--title">Sponsors</h3>
+            <div class="table--container">
+                <table>
+                    <thead>
+                        <tr>
+                            
+                            <th>Name </th>
+                            <th>Company</th>
+                            <th>Total Campaigns</th>
+                            <th>Total Ads</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                        <tbody>
+                            {% for i in sponsor  %}
+                                
+                            <tr>
+                                
+                                <td>{{i.username}}</td>
+                                <td>{{i.bname}}</td>
+                                <td>{{i.campaigns|length}}</td>
+                                <td>{{i.ads|length}}</td>
+                                <td><a href="/brand_flag/{{ i.sponsor_id }}"><button class="red-btn">{{ i.status }}</button></a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+
+                </table>
+            </div>
+        </div>
+        <div class="tabular--wrapper">
+            <h3 class="main--title">Influencers</h3>
+            <div class="table--container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name </th>
+                            <th>Category</th>
+                            <th>Reach</th>
+                            <th>Action</th>
+                            <!-- <th>Action2</th> -->
+                            <!-- <th>Action3</th> -->
+                        </tr>
+                    </thead>
+                        <tbody>
+                            {% for i in  influencer %}
+                                
+                            <tr>
+                                <td>{{i.username}}</td>
+                                <td>{{i.category}}</td>
+                                <td>{{i.reach}}</td>
+                                <!-- <td><button class="yellow-btn">View</button></td> -->
+                                <!-- <td><button class="yellow-btn">Accept</button></td> -->
+                                <td><a href="/usr_flag/{{ i.influencer_id }}"><button class="red-btn">{{i.status}}</button></a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+
+                </table>
+            </div>
+        </div>
+        <div class="tabular--wrapper">
+            <h3 class="main--title">Campaigns / Ads</h3>
+            <div class="table--container">
+                <table>
+                    <thead>
+
+                        <tr>
+                            <th>Campaign/Ads </th>
+                            <th>Company</th>
+                            <th>Influencer</th>
+                            <th>Status</th>
+                            <!-- <th>Action2</th> -->
+                            <!-- <th>Action3</th> -->
+                        </tr>
+                    </thead>
+                        <tbody>
+                         {% for i,j,k,l in a_ads  %}
+                            
+                         <tr>
+                             <td>{{k.name}}/{{i.name}}</td>
+                             <td>{{l.bname}}</td>
+                             <td>{{j.username}}</td>
+                             
+                             <td><a href=""><button class="green-btn"> {{ i.status }} </button></a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+
+                </table>
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

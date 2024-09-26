@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dashboard - Brand</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+</head>
+<body class="dash-camp-body">
+    
+<div class="sidebar">
+    <div class="dash-logo"></div>
+        <ul class="menu">
+            <li class="active">
+                <a href="/home" >
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                    </a>
+            </li>
+            <li>
+                <a href="/user_profile/{{ i_id }}">
+                    <i class="fas fa-user"></i>
+                    <span>Proifle</span>
+                    </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Statistics</span>
+                    </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-question-circle""></i>
+                    <span>Support</span>
+                    </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                    </a>
+            </li>
+            <li class="logout">
+                <a href="/">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Log Out</span>
+                    </a>
+            </li>
+           
+        </ul>
+   
+</div>
+
+<div class="main--content">
+    <div class="header--wrapper">
+        <div class="header--title">
+            <span>Welcome {{uname}}</span>
+            <h2>ADS</h2>
+            <!-- <h3>Ratings</h3> -->
+        </div>
+        <div class="user--info">
+            <div class="search--box">
+
+                <i class="fa-solid fa-search">
+    
+                </i>
+                <input type="text" class="sin" name="" id="" placeholder="Search">
+            </div>
+            
+        </div>
+        
+    </div>
+
+    <div class="card--container">
+        <h3 class="main--title">
+            
+        </h3>
+        <div class="card--wrapper">
+
+            {% for i,j,k in p_ads %}
+            <div class="usr--card--ads ">
+                <div class="card--header">
+                    <div class="amount">
+                        <span class="title">
+                            {{j.username}}
+                        </span>
+                        <span class="amount--value-camp">
+                            <hr>
+                            Campaign Name: {{ k.name }}
+                            <br>
+                            <br>
+                            Ad.Name: {{ i.name }}
+                            <i class="fa-brands fa-canadian-maple-leaf"></i>                
+                            <br>
+                            <br>
+                            Payment for Ad: {{ i.payment }}
+                            <br>
+                            <br>
+                            <form action="/request_ad/{{ i.ad_id }}" method="post">
+                                <button class="accept-btn">Request</button>
+
+                            </form>
+                            
+                           
+                            
+                            
+                        </span>
+                        
+                    </div>
+                </div>
+               
+            </div>
+            {% endfor %}
+
+            
+            
+    
+<!-- MODAL------------------------------------------------------------------------------- -->
+
+
+
+<!-------------------------------------------------------------------------Find Influencer Modal -->
+
+
+
+
+
+<!---------------------------------------------BootStrap Script--------------------------------------------------------------------------------------------------------------->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+
+           
+
+
+
+
+            
+
+
+
+</body>
+</html>
